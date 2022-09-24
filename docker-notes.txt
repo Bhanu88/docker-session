@@ -1,0 +1,31 @@
+docker system info #Display system-wide information of docker engine
+#Image creation and running
+docker build -t static-nginx:v0 . #building an image
+docker run --rm -it -p 8060:80 static-nginx:v0 #running an container in intractive mode
+docker run --rm -dt -p 8060:80 static-nginx:v0 #running an container in background
+docker exec -it static-nginx:v0 /bin/sh 	#SSH into container
+docker restart static-nginx:v0	#Restart a container
+docker ps -a #listing all running containers
+docker images # listing all the images 
+docker system prune -af #cleaning the Docker engine
+docker system df	#Check docker daemon disk space usage
+docker stats	#Show running container stats
+
+#docker registry
+docker login #docker hub login
+docker build -t bhanu/static-nginx:v1.0 . # building an image with tag
+docker image push bhanu/static-nginx:v1.0 #pushing an image to docker hub 
+docker search  bhanu/static-nginx  # searching an image in docker hub 
+docker pull bhanu/static-nginx:v1.0 #pulling an image from docker hub
+
+# docker commit 
+
+
+#docker diff
+
+
+#docker network
+
+# Docker volume
+
+
