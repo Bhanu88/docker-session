@@ -3,8 +3,8 @@ docker system info #Display system-wide information of docker engine
 docker build -t static-nginx:v0 . #building an image
 docker run --rm -it -p 8060:80 static-nginx:v0 #running an container in intractive mode
 docker run --rm -dt -p 8060:80 static-nginx:v0 #running an container in background
-docker exec -it static-nginx:v0 /bin/sh 	#SSH into container
-docker restart static-nginx:v0	#Restart a container
+docker exec -it <container_id> /bin/sh 	#SSH into container
+docker restart <container_id>	#Restart a container
 docker ps -a #listing all running containers
 docker images # listing all the images 
 docker system prune -af #cleaning the Docker engine
