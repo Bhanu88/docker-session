@@ -19,10 +19,30 @@ docker search  bhanu/static-nginx  # searching an image in docker hub
 docker pull bhanu/static-nginx:v1.0 #pulling an image from docker hub
 
 # docker commit 
+#pull ubuntu default image
+docker pull ubuntu
+#check the images
+docker images
+# run ubuntu image in intractive mode
+docker run -it <image_id_ubuntu> bin/bash
+#now you are inside the container run following commands in container to install nmap
+apt
+apt-get install nmap
+#check nmap version
+nmap --version
+#exit the container
+exit
+#check the ID of exited container
+docker ps -a
+#commit ans tag the container into an image
+docker commit c0989a370320 bhanu/ubuntu-nmap:v0
+#push the image in docker registry
+docker push bhanu/ubuntu-nmap:v0
+
 
 
 #docker diff
-
+docker diff <container id>
 
 #docker network
 docker network ls
