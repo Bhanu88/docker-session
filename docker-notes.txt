@@ -25,7 +25,62 @@ docker pull bhanu/static-nginx:v1.0 #pulling an image from docker hub
 
 
 #docker network
+docker network ls
+
+#default bridge network
+# Start an nginx container, give it the name 'mynginx' and run in the background
+docker run --rm --name mynginx --detach nginx
+# Get the IP address of the container
+docker inspect mynginx | grep IPAddress
+# Run busybox (a utility container). It will join the bridge network
+docker run -it busybox sh
+# Fetch the nginx homepage by using the container's IP address
+wget -q -O - 172.17.0.2:80
+
+#create network
+docker network create tulip-net
+#create nginx container in custom network
+docker run --rm --net tulip-net --name tulipnginx -d nginx 
+#create a busy box container in the custom network
+docker run --net tulip-net -it busybox sh
+#calling nginx container
+wget -q -O - tulipnginx:80
+
+
+#For containers to communicate with other, they need to be part of the same “network”.
+
+#Docker creates a virtual network called bridge by default, and connects your containers to it.
+
+#In the network, containers are assigned an IP address, which they can use to address each other.
+
+#If you want more control (and you definitely do), you can create a user-defined bridge, which will give you the added benefit of hostnames for your containers too.
+
+
+
+
+
 
 # Docker volume
+cd docker2
+docker build -t static-nginx-nofiles:v0 .
+docker run --rm -it -p 8060:80 static-nginx-nofiles:v0
+docker run --rm -it -v <PATH\html_files>:/usr/share/nginx/html -p 8060:80 static-nginx-nofiles:v0
 
 
+docker volume create data_volume
+docker volume ls
+docker volume inspect data_volume
+docker volume rm data_volume
+docker volume prune
+
+
+docker run -v data-volume:/var/opt/project bash:latest bash -c "ls /var/opt/project"
+docker run -v data-volume:/var/opt/project bash:latest bash -c "echo Baeldung > /var/opt/project/Baeldung.txt"
+docker run -v data-volume:/var/opt/project bash -c "ls /var/opt/project"
+
+docker run --mount 'type=volume,src=data-volume,dst=/var/opt/project,volume-driver=local,readonly' bash -c "ls /var/opt/project"
+
+#Differences between -v and --mount behavior
+#As opposed to bind mounts, all options for volumes are available for both --mount and -v flags.
+
+#When using volumes with services, only --mount is supported.
