@@ -26,7 +26,7 @@ docker images
 # run ubuntu image in intractive mode
 docker run -it <image_id_ubuntu> bin/bash
 #now you are inside the container run following commands in container to install nmap
-apt
+apt update
 apt-get install nmap
 #check nmap version
 nmap --version
@@ -85,6 +85,9 @@ cd docker2
 docker build -t static-nginx-nofiles:v0 .
 docker run --rm -it -p 8060:80 static-nginx-nofiles:v0
 docker run --rm -it -v <PATH\html_files>:/usr/share/nginx/html -p 8060:80 static-nginx-nofiles:v0
+D:\technical_work\repos\docker-session\html_files
+
+docker run --rm -it -v D:\technical_work\repos\docker-session\html_files:/usr/share/nginx/html -p 8060:80 static-nginx-nofiles:v0
 
 
 docker volume create data_volume
@@ -107,4 +110,16 @@ docker run --mount 'type=volume,src=data-volume,dst=/var/opt/project,volume-driv
 
 
 #Docker ports
+
+
+
+
+#ingress 
+#ingress controller example
+helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace
+#Check the Ingress controller pod is running
+kubectl get pods --namespace ingress-nginx
+#Check the NGINX Ingress controller has been assigned a public Ip address
+kubectl get service ingress-nginx-controller --namespace=ingress-nginx
+
 
