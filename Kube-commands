@@ -1,0 +1,11 @@
+# get current context
+ kubectl config current-context
+ 
+ # get namespaces
+ kubectl get ns
+ 
+ # create namespace
+ kubectl create ns test
+ 
+ # delete namespace
+ kubectl delete ns test
