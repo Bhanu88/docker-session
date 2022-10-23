@@ -1,0 +1,7 @@
+version: "3.2"
+services:
+  web:
+    image: alpine
+    volumes:
+      - ./file:/app
+    command: [ /bin/sh , -c , "cd /app/ && ls -alrt && chmod +x ./app.sh && . ./app.sh"]
