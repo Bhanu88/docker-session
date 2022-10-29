@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: cm-example
 data:
-  state: Michigan
-  city: Ann Arbor
+  state: Karnataka
+  city: Bangalore
+  country: india
 
