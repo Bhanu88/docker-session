@@ -26,6 +26,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: .docker1/Dockerfile
+          file: ./docker1/Dockerfile
           push: true
           tags: ${{ secrets.HUB_U }}/actions:latest
