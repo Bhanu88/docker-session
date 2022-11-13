@@ -27,3 +27,9 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/docker1/Dockerfile'
         tags: |
           $(tag)
+    - task: CmdLine@2
+      inputs:
+        script: |
+          echo ls
+          
+          echo Hello world
